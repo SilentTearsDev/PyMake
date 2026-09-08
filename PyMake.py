@@ -6,8 +6,31 @@ import sys
 from pathlib import Path
 
 
-def main():
-    project_dir = Path.cwd()
+def install_requirements(project_dir, venv_dir, requirements_file):
+    if not venv_dir.exists():
+        print("✗ Virtual environment does not exist.")
+        print("Run 'pymake' first.")
+        return
+
+    if not requirements_file.exists():
+        print("✗ requirements.txt does not exist.")
+        return
+
+    print("Installing requirements into the virtual environment...")
+    print()
+
+    pip = venv_dir / "bin" / "pip"
+
+    subprocess.run(
+        [str(pip), "install", "-r", str(requirements_file)],
+        check=True
+    )
+
+    print()
+    print("✓ Requirements installed successfully")
+
+
+def create_project(project_dir):
     venv_dir = project_dir / ".venv"
     requirements_file = project_dir / "requirements.txt"
     main_file = project_dir / "main.py"
@@ -39,8 +62,6 @@ def main():
     print("Project ready!")
     print()
 
-    # A Python process cannot activate its parent shell directly.
-    # Start a new Bash shell with the venv activated.
     activate = venv_dir / "bin" / "activate"
 
     os.execv(
@@ -49,5 +70,26 @@ def main():
     )
 
 
+def main():
+    project_dir = Path.cwd()
+
+    if len(sys.argv) > 1:
+        command = sys.argv[1].lower()
+
+        if command == "-install":
+            venv_dir = project_dir / ".venv"
+            requirements_file = project_dir / "requirements.txt"
+
+            install_requirements(
+                project_dir,
+                venv_dir,
+                requirements_file
+            )
+            return
+
+    create_project(project_dir)
+
+
 if __name__ == "__main__":
     main()
+
