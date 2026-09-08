@@ -1,0 +1,2 @@
+#!/bin/sh
+exec python3 "/PATH/TO/python_venv_maker/venv_maker.py" "$@"
