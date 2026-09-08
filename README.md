@@ -45,17 +45,10 @@ pymake
 Run this from inside the project folder:
 
 ```bash
+chmod +x PyMake.py
 mkdir -p ~/.local/bin
-ln -s "$(pwd)/pymake" ~/.local/bin/pymake
+ln -s "$(pwd)/PyMake.py" ~/.local/bin/pymake
 ```
-
-Before using the command, edit `pymake` and replace:
-
-```text
-/PATH/TO/PyMake/PyMake.py
-```
-
-with the real path to `PyMake.py`.
 
 Then you can run it from any terminal:
 
@@ -73,6 +66,8 @@ my-python-project/
 └── main.py
 ```
 
+The virtual environment will be automatically activated when `pymake` finishes.
+
 ## Removing it
 
 If you only downloaded the project, just delete its folder.
@@ -84,3 +79,5 @@ rm ~/.local/bin/pymake
 ```
 
 Then you can delete the project folder if you want.
+
+Removing `pymake` does not delete any `.venv`, `requirements.txt`, or `main.py` files created in your project folders.
