@@ -45,8 +45,8 @@ pymake
 Run this from inside the project folder:
 
 ```bash
+rm ~/.local/bin/pymake
 chmod +x PyMake.py
-mkdir -p ~/.local/bin
 ln -s "$(pwd)/PyMake.py" ~/.local/bin/pymake
 ```
 
