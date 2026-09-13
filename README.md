@@ -42,12 +42,23 @@ If you want to start the program by simply typing:
 pymake
 ```
 
-Run this from inside the project folder:
+Run the installer from inside the project folder:
 
 ```bash
-rm ~/.local/bin/pymake
-chmod +x PyMake.py
-ln -s "$(pwd)/PyMake.py" ~/.local/bin/pymake
+./install.sh
+```
+
+This will:
+
+- make `PyMake.py` executable
+- create `~/.local/bin` if needed
+- link it as `pymake` in `~/.local/bin` (replacing any previous link)
+- warn you if `~/.local/bin` isn't on your `PATH` yet
+
+If it warns about your `PATH`, add this line to your `~/.bashrc` or `~/.zshrc`, then open a new terminal:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Then you can run it from any terminal:
@@ -72,10 +83,10 @@ The virtual environment will be automatically activated when `pymake` finishes.
 
 If you only downloaded the project, just delete its folder.
 
-If you also installed the terminal command:
+If you also installed the terminal command, run the uninstaller from inside the project folder:
 
 ```bash
-rm ~/.local/bin/pymake
+./uninstall.sh
 ```
 
 Then you can delete the project folder if you want.
